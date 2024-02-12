@@ -1,2 +1,2 @@
 # cpp-2024-1
-Sukurti studentų registrą.
+Sukurti universiteto registrą.
