@@ -17,7 +17,7 @@ public:
 
     Trackable();
 
-    void print();
+    virtual void print();
     ~Trackable();
 
 };
