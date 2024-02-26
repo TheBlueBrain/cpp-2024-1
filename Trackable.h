@@ -12,13 +12,13 @@ protected:
     std::string Name;
     const time_t Time;
 public:
-    virtual const std::string getName();
+    virtual std::string getName() const;
     unsigned type;
     static unsigned long amount;
     unsigned long ID;
     Trackable(std::string Name);
     Trackable();
-    virtual const void print();
+    virtual void print() const;
     ~Trackable();
 
 };

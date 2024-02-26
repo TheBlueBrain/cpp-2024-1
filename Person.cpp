@@ -14,7 +14,7 @@ Person::Person(std::string name, std::string lastName) {
     this->lastName = lastName;
 }
 
-const void Person::print() {
+void Person::print() const{
     std::cout<<"ENTRY ID: "<< ID <<" Given name: "<<firstName<<" Last name: "<<lastName<<" Date of entry: "<< std::ctime(&Time);
 }
 
@@ -27,6 +27,6 @@ void Person::changeName(std::string NewName) {
     Name = firstName + " " + lastName;
 }
 
-const std::string Person::getName() {
+std::string Person::getName() const{
     return Name;
 }

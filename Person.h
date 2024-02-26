@@ -15,8 +15,8 @@ private:
 public:
     static unsigned long NID;
     Person(std::string name, std::string lastName);
-    const std::string getName();
-    const void print() override;
+    std::string getName() const;
+    void print() const override;
     ~Person();
     void changeName(std::string NewName);
 };

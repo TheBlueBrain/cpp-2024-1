@@ -15,7 +15,7 @@ Trackable::Trackable(std::string Name) : Time(time(0)){
     amount++;
 }
 
-const void Trackable::print() {
+ void Trackable::print() const {
     std::cout << "ENTRY ID " << ID << " Name of object: " << Name << " Time of entry: " << std::ctime(&Time);
 }
 
@@ -29,6 +29,7 @@ Trackable::Trackable() : Time(time(0)){
     amount++;
 }
 
-const std::string Trackable::getName() {
+std::string Trackable::getName() const {
     return Name;
 }
+
