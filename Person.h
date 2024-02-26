@@ -13,8 +13,10 @@ class Person:public Trackable {
 private:
     std::string firstName, lastName;
 public:
+    static unsigned long NID;
     Person(std::string name, std::string lastName);
-    void print() override;
+    const std::string getName();
+    const void print() override;
     ~Person();
     void changeName(std::string NewName);
 };

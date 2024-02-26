@@ -8,15 +8,14 @@
 #include <iostream>
 unsigned long Trackable::amount = 0;
 unsigned long Trackable::NID = 0;
-Trackable::Trackable(std::string Name){
+Trackable::Trackable(std::string Name) : Time(time(0)){
     this->Name = Name;
     this->ID = NID;
     NID++;
     amount++;
-    Time = time(0);
 }
 
-void Trackable::print() {
+const void Trackable::print() {
     std::cout << "ENTRY ID " << ID << " Name of object: " << Name << " Time of entry: " << std::ctime(&Time);
 }
 
@@ -24,9 +23,12 @@ Trackable::~Trackable() {
     amount--;
 }
 
-Trackable::Trackable() {
-    this->ID = NID;
+Trackable::Trackable() : Time(time(0)){
+    this->ID = Trackable::NID;
     NID++;
     amount++;
-    Time = time(0);
+}
+
+const std::string Trackable::getName() {
+    return Name;
 }

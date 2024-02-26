@@ -8,12 +8,13 @@
 
 
 Person::Person(std::string name, std::string lastName) {
+
     Name = name + " " + lastName;
     firstName = name;
     this->lastName = lastName;
 }
 
-void Person::print() {
+const void Person::print() {
     std::cout<<"ENTRY ID: "<< ID <<" Given name: "<<firstName<<" Last name: "<<lastName<<" Date of entry: "<< std::ctime(&Time);
 }
 
@@ -24,4 +25,8 @@ Person::~Person() {
 void Person::changeName(std::string NewName) {
     firstName = NewName;
     Name = firstName + " " + lastName;
+}
+
+const std::string Person::getName() {
+    return Name;
 }
