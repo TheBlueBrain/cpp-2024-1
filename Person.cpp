@@ -20,3 +20,8 @@ void Person::print() {
 Person::~Person() {
     amount--;
 }
+
+void Person::changeName(std::string NewName) {
+    firstName = NewName;
+    Name = firstName + " " + lastName;
+}

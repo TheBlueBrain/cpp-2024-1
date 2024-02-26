@@ -11,12 +11,11 @@ class Trackable {
 public:
     std::string Name;
     time_t Time;
+    unsigned type;
     static unsigned long amount;
     unsigned long ID;
     Trackable(std::string Name);
-
     Trackable();
-
     virtual void print();
     ~Trackable();
 

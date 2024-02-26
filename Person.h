@@ -14,8 +14,9 @@ private:
     std::string firstName, lastName;
 public:
     Person(std::string name, std::string lastName);
-    void print();
+    void print() override;
     ~Person();
+    void changeName(std::string NewName);
 };
 
 

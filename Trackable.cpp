@@ -17,7 +17,7 @@ Trackable::Trackable(std::string Name){
 }
 
 void Trackable::print() {
-    std::cout << "ENTRY ID " << ID << " Name of object: " << Name << " Time of entry: " << std::ctime(&Time) << std::endl;
+    std::cout << "ENTRY ID " << ID << " Name of object: " << Name << " Time of entry: " << std::ctime(&Time);
 }
 
 Trackable::~Trackable() {
