@@ -13,7 +13,6 @@ int main() {
     Trackable* test2 = new Person("vardas", "pavarde");
     printAmount();
     test2->print();
-
     Trackable *Entries[7];
     for(int i = 0; i < 3; ++i){
         std::string name;
@@ -25,17 +24,20 @@ int main() {
         std::cin >> f >> l;
         Entries[3 + i] = new Person(f, l);
     }
-    for(auto Entrie : Entries){
-        Entrie->print();
+    for(auto Entry : Entries){
+        Entry->print();
     }
     Person *cast = dynamic_cast<Person*>(Entries[6]);
     if(cast){
         cast->changeName("Vardenis");
     }else{
-        std::cout<<"Not a person"<<std::endl;
+        std::cout<<"Not a person! Value change is VERBOTEN!"<<std::endl;
     }
-    for(auto Entrie : Entries){
-        Entrie->print();
+    for(auto Entry : Entries){
+        Entry->print();
     }
+    printAmount();
+    delete Entries[6];
+    printAmount();
     return 0;
 }
