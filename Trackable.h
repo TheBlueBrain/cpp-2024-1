@@ -7,16 +7,18 @@
 #include <string>
 
 class Trackable {
+protected:
     static unsigned long NID;
-public:
     std::string Name;
-    time_t Time;
+    const time_t Time;
+public:
+    virtual const std::string getName();
     unsigned type;
     static unsigned long amount;
     unsigned long ID;
     Trackable(std::string Name);
     Trackable();
-    virtual void print();
+    virtual const void print();
     ~Trackable();
 
 };
