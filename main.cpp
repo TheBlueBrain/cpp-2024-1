@@ -7,6 +7,7 @@ void printAmount(){
 }
 
 int main() {
+
     Trackable* test1 = new Trackable("Netipizuotas irasas");
     test1->print();
     printAmount();
