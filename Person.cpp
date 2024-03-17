@@ -22,9 +22,15 @@ Person::~Person() {
     amount--;
 }
 
-void Person::changeName(std::string NewName) {
-    firstName = NewName;
-    Name = firstName + " " + lastName;
+void Person::changeName(std::string NewName, Trackable* obj) {
+    Person *cast = dynamic_cast<Person*>(obj);
+    if(cast){
+        cast ->firstName = NewName;
+    }else{
+        throw std::bad_cast();
+    }
+
+
 }
 
 std::string Person::getName() const{

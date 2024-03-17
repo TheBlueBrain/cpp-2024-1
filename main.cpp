@@ -27,12 +27,7 @@ int main() {
     for(auto Entry : Entries){
         Entry->print();
     }
-    Person *cast = dynamic_cast<Person*>(Entries[6]);
-    if(cast){
-        cast->changeName("Vardenis");
-    }else{
-        std::cout<<"Not a person! Value change is VERBOTEN!"<<std::endl;
-    }
+    Person::changeName("Vardenis", Entries[6]);
     for(auto Entry : Entries){
         Entry->print();
     }

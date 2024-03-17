@@ -18,7 +18,7 @@ public:
     std::string getName() const;
     void print() const override;
     ~Person();
-    void changeName(std::string NewName);
+    static void changeName(std::string NewName, Trackable *obj);
 };
 
 
