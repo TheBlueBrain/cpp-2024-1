@@ -31,6 +31,7 @@ int main() {
     for(auto Entry : Entries){
         Entry->print();
     }
+
     printAmount();
     delete Entries[6];
     printAmount();
