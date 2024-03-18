@@ -13,38 +13,50 @@ int main() {
     Trackable* test2 = new Person("vardas", "pavarde");
     printAmount();
     test2->print();
-    Trackable *Entries[7];
+    //Trackable *Entries[7];
+    Trackable ** Ent;
+    Ent = new Trackable*[7];
     for(int i = 0; i < 3; ++i){
         std::string name;
         std::cin >> name;
-        Entries[i] = new Trackable(name);
+        Ent[i] = new Trackable(name);
+        //Entries[i] = new Trackable(name);
     }
     for(int i = 0; i < 4; ++i){
         std::string f, l;
         std::cin >> f >> l;
-        Entries[3 + i] = new Person(f, l);
+        Ent[3 + i] = new Person(f, l);
+        //Entries[3 + i] = new Person(f, l);
     }
-    for(auto Entry : Entries){
+    /*for(auto Entry : Entries){
         Entry->print();
+    }*/
+    for(int i = 0; i < 7; ++i){
+        Ent[i]->print();
     }
     try {
-        Person::changeName("Vardenis", Entries[6]);
+    //    Person::changeName("Vardenis", Entries[6]);
+        Person::changeName("Vardenis", Ent[6]);
 
     }catch(std::bad_cast) {
         std::cout<<"Klaida keiciant 6\n";
     }
     try {
-        Person::changeName("Vardenis", Entries[0]);
+   //     Person::changeName("Vardenis", Entries[0]);
+        Person::changeName("Vardenis", Ent[0]);
     }catch(std::bad_cast) {
         std::cout<<"Klaida keiciant 0\n";
     }
 
-    for(auto Entry : Entries){
+   /* for(auto Entry : Entries){
         Entry->print();
+    }*/
+    for(int i = 0; i < 7; i++){
+        Ent[i]->print();
     }
-
     printAmount();
-    delete Entries[6];
+    //delete Entries[6];
+    delete Ent[6];
     printAmount();
     return 0;
 }
