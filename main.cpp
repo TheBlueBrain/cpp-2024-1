@@ -27,7 +27,18 @@ int main() {
     for(auto Entry : Entries){
         Entry->print();
     }
-    Person::changeName("Vardenis", Entries[6]);
+    try {
+        Person::changeName("Vardenis", Entries[6]);
+
+    }catch(std::bad_cast) {
+        std::cout<<"Klaida keiciant 6\n";
+    }
+    try {
+        Person::changeName("Vardenis", Entries[0]);
+    }catch(std::bad_cast) {
+        std::cout<<"Klaida keiciant 0\n";
+    }
+
     for(auto Entry : Entries){
         Entry->print();
     }
