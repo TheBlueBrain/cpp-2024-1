@@ -36,3 +36,9 @@ void Person::changeName(std::string NewName, Trackable* obj) {
 std::string Person::getName() const{
     return Name;
 }
+
+Person::Person(const Person& other) {
+    Name = other.Name;
+    firstName = other.firstName;
+    lastName = other.lastName;
+}

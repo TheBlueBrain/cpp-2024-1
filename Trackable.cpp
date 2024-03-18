@@ -33,3 +33,7 @@ std::string Trackable::getName() const {
     return Name;
 }
 
+Trackable::Trackable(const Trackable &other) :Time(other.Time){
+    Name = other.Name;
+}
+

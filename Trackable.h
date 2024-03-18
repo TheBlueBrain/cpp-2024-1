@@ -19,6 +19,7 @@ public:
     Trackable(std::string Name);
     Trackable();
     virtual void print() const;
+    Trackable(const Trackable& other);
     ~Trackable();
 
 };
