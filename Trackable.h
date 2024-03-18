@@ -20,6 +20,8 @@ public:
     Trackable();
     virtual void print() const;
     Trackable(const Trackable& other);
+    Trackable& operator=(const Trackable& other);
+    Trackable& operator=(Trackable&& other) noexcept;
     ~Trackable();
 
 };

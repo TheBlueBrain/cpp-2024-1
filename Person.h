@@ -19,6 +19,8 @@ public:
     void print() const override;
     ~Person();
     Person(const Person& other);
+    Person& operator=(const Person& other);
+    Person& operator=(Person&& other);
     static void changeName(std::string NewName, Trackable *obj);
 };
 

@@ -35,5 +35,21 @@ std::string Trackable::getName() const {
 
 Trackable::Trackable(const Trackable &other) :Time(other.Time){
     Name = other.Name;
+    ID = other.ID;
+}
+
+Trackable &Trackable::operator=(const Trackable &other) {
+    return *this = Trackable(other);
+}
+
+Trackable &Trackable::operator=(Trackable &&other) noexcept {
+    if(this == &other){
+        return *this;
+    }
+    Name = other.Name;
+    ID=other.ID;
+    other.Name = "";
+    other.ID = 0;
+    return *this;
 }
 

@@ -42,3 +42,22 @@ Person::Person(const Person& other) {
     firstName = other.firstName;
     lastName = other.lastName;
 }
+
+Person &Person::operator=(const Person &other) {
+    return *this = Person(other);
+}
+
+Person &Person::operator=(Person &&other) {
+    if(this == &other){
+        return *this;
+    }
+    Name = other.Name;
+    firstName = other.firstName;
+    lastName = other.lastName;
+    ID = other.ID;
+    other.firstName = "";
+    other.lastName = "";
+    other.Name = "";
+    other.ID = 0;
+    return *this;
+}
