@@ -14,6 +14,7 @@ class Person:public Trackable {
 private:
     class Impl;
     Impl *pimpl;
+    TrackableProtected *parentp;
 public:
     static unsigned long NID;
     Person(std::string name, std::string lastName);

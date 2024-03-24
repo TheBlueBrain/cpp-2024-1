@@ -7,46 +7,32 @@
 #include <ctime>
 #include <iostream>
 unsigned long Trackable::amount = 0;
-struct Trackable::ImplTrack{
-    ImplTrack(const Trackable trackable) :Time(trackable.p->Time){
-        Name = trackable.p->Name;
-    }
 
-    static unsigned long NID;
-    std::string Name;
-    const time_t Time;
-    ImplTrack(std::string name):Time(time(0)){
-        Name=name;
-    }
-    ImplTrack():Time(time(0)){
-    }
-
-};
-Trackable::Trackable(std::string Name) : p(new ImplTrack(Name)){
-    this->ID = p->NID;
-    p->NID++;
+Trackable::Trackable(std::string Name) : proc(new TrackableProtected(Name)){
+    this->ID = TrackableProtected::NID;
+    TrackableProtected::NID++;
     amount++;
 }
 
  void Trackable::print() const {
-    std::cout << "ENTRY ID " << ID << " Name of object: " << p->Name << " Time of entry: " << std::ctime(&p->Time);
+    std::cout << "ENTRY ID " << ID << " Name of object: " << proc->Name << " Time of entry: " << std::ctime(&proc->Time);
 }
 
 Trackable::~Trackable() {
     amount--;
 }
 
-Trackable::Trackable() : p(new ImplTrack()){
-    this->ID = p->NID;
-    p->NID++;
+Trackable::Trackable() : proc(new TrackableProtected()){
+    ID = proc->NID;
+    TrackableProtected::NID++;
     amount++;
 }
 
 std::string Trackable::getName() const {
-    return p->Name;
+    return proc->Name;
 }
 
-Trackable::Trackable(const Trackable &other) :p(new ImplTrack(other)){
+Trackable::Trackable(const Trackable &other) :proc(new TrackableProtected(other.getProtected())){
     ID = other.ID;
 }
 
@@ -58,10 +44,18 @@ Trackable &Trackable::operator=(Trackable &&other) noexcept {
     if(this == &other){
         return *this;
     }
-    p->Name = other.p->Name;
+    proc->Name = other.proc->Name;
     ID=other.ID;
-    other.p->Name = "";
+    other.proc->Name = "";
     other.ID = 0;
     return *this;
+}
+
+const TrackableProtected *Trackable::getProtected() const {
+    return proc;
+}
+
+TrackableProtected *Trackable::getProtected() {
+    return proc;
 }
 

@@ -5,11 +5,14 @@
 #ifndef CPP_2024_1_TRACKABLE_H
 #define CPP_2024_1_TRACKABLE_H
 #include <string>
+#include "TrackableProtected.h"
 
 class Trackable {
+private:
+    TrackableProtected *proc;
 protected:
-    class ImplTrack;
-    ImplTrack *p;
+    const TrackableProtected* getProtected() const;
+    TrackableProtected* getProtected();
 public:
     virtual std::string getName() const;
     unsigned type;
