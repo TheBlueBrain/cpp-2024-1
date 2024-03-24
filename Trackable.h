@@ -8,9 +8,8 @@
 
 class Trackable {
 protected:
-    static unsigned long NID;
-    std::string Name;
-    const time_t Time;
+    class ImplTrack;
+    ImplTrack *p;
 public:
     virtual std::string getName() const;
     unsigned type;

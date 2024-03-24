@@ -7,11 +7,13 @@
 
 
 #include <string>
+#include <memory>
 #include "Trackable.h"
 
 class Person:public Trackable {
 private:
-    std::string firstName, lastName;
+    class Impl;
+    Impl *pimpl;
 public:
     static unsigned long NID;
     Person(std::string name, std::string lastName);

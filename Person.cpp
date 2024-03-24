@@ -6,16 +6,22 @@
 #include <ctime>
 #include "Person.h"
 
-
-Person::Person(std::string name, std::string lastName) {
+struct Person::Impl{
+    std::string firstName, lastName;
+Impl(std::string Fname, std::string Lname){
+    firstName=Fname;
+    lastName=Lname;
+}
+};
+Person::Person(std::string name, std::string lastName) :pimpl(new Impl(name, lastName)) {
 
     Name = name + " " + lastName;
-    firstName = name;
-    this->lastName = lastName;
+    pimpl->firstName = name;
+    pimpl->lastName = lastName;
 }
 
 void Person::print() const{
-    std::cout<<"ENTRY ID: "<< ID <<" Given name: "<<firstName<<" Last name: "<<lastName<<" Date of entry: "<< std::ctime(&Time);
+    std::cout<<"ENTRY ID: "<< ID <<" Given name: "<<pimpl->firstName<<" Last name: "<<pimpl->lastName<<" Date of entry: "<< std::ctime(&Time);
 }
 
 Person::~Person() {
@@ -25,7 +31,7 @@ Person::~Person() {
 void Person::changeName(std::string NewName, Trackable* obj) {
     Person *cast = dynamic_cast<Person*>(obj);
     if(cast){
-        cast ->firstName = NewName;
+        cast ->pimpl->firstName = NewName;
     }else{
         throw std::bad_cast();
     }
@@ -39,24 +45,24 @@ std::string Person::getName() const{
 
 Person::Person(const Person& other) {
     Name = other.Name;
-    firstName = other.firstName;
-    lastName = other.lastName;
+    pimpl->firstName = other.pimpl->firstName;
+    pimpl->lastName = other.pimpl->lastName;
 }
 
 Person &Person::operator=(const Person &other) {
     return *this = Person(other);
 }
 
-Person &Person::operator=(Person &&other) {
+Person &Person::operator=(Person &&other){
     if(this == &other){
         return *this;
     }
     Name = other.Name;
-    firstName = other.firstName;
-    lastName = other.lastName;
+    pimpl->firstName = other.pimpl->firstName;
+    pimpl->lastName = other.pimpl->lastName;
     ID = other.ID;
-    other.firstName = "";
-    other.lastName = "";
+    other.pimpl->firstName = "";
+    other.pimpl->lastName = "";
     other.Name = "";
     other.ID = 0;
     return *this;
