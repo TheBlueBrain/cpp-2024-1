@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Trackable.h"
 #include "Person.h"
+#include "PersonPrintId.h"
 
 void printAmount(){
     std::cout<<Trackable::amount<<std::endl;
@@ -58,5 +59,11 @@ int main() {
     //delete Entries[6];
     delete Ent[6];
     printAmount();
+
+
+    Person *p = new Person("A", "B");
+    p->print();
+    p->prt=new PersonPrintId();
+    p->print();
     return 0;
 }

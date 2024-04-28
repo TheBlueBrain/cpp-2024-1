@@ -5,6 +5,7 @@
 #include <iostream>
 #include <ctime>
 #include "Person.h"
+#include "PersonPrintFullName.h"
 
 struct Person::Impl{
     std::string firstName, lastName;
@@ -21,10 +22,12 @@ struct Person::Impl{
 Person::Person(std::string name, std::string lastName) : pimpl(new Impl(name, lastName)) {
     parentp = getProtected();
     parentp ->Name = name + " " + lastName;
+    prt = new PersonPrintFullName();
 }
 
 void Person::print() const{
-    std::cout<<"ENTRY ID: "<< ID <<" Given name: "<<pimpl->firstName<<" Last name: "<<pimpl->lastName<<" Date of entry: "<< std::ctime(&parentp->Time);
+    prt->print(*this);
+    //std::cout<<"ENTRY ID: "<< ID <<" Given name: "<<pimpl->firstName<<" Last name: "<<pimpl->lastName<<" Date of entry: "<< std::ctime(&parentp->Time);
 }
 
 Person::~Person() {
@@ -43,7 +46,7 @@ void Person::changeName(std::string NewName, Trackable* obj) {
 }
 
 std::string Person::getName() const{
-    return this->parentp->Name;
+    return this->pimpl->firstName + " "+ this->pimpl->lastName;
 }
 Person::Person(const Person& other) :pimpl(new Impl(other)) {
     parentp = getProtected();

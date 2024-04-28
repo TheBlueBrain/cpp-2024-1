@@ -8,14 +8,22 @@
 
 #include <string>
 #include <memory>
-#include "Trackable.h"
 
-class Person:public Trackable {
+
+
+#include "Trackable.h"
+#include "Personprint.h"
+class Personprint;
+#include "PersonPrintFullName.h"
+class PersonPrintFullName;
+
+class Person: public Trackable {
 private:
     class Impl;
     Impl *pimpl;
     TrackableProtected *parentp;
 public:
+    Personprint *prt = nullptr;
     static unsigned long NID;
     Person(std::string name, std::string lastName);
     std::string getName() const;

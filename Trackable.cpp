@@ -14,9 +14,7 @@ Trackable::Trackable(std::string Name) : proc(new TrackableProtected(Name)){
     amount++;
 }
 
- void Trackable::print() const {
-    std::cout << "ENTRY ID " << ID << " Name of object: " << proc->Name << " Time of entry: " << std::ctime(&proc->Time);
-}
+
 
 Trackable::~Trackable() {
     amount--;
@@ -57,5 +55,9 @@ const TrackableProtected *Trackable::getProtected() const {
 
 TrackableProtected *Trackable::getProtected() {
     return proc;
+}
+
+void Trackable::print() const {
+    std::cout << proc->Name << "\n";
 }
 
