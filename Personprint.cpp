@@ -5,6 +5,6 @@
 #include "Personprint.h"
 #include "Person.h"
 
-void Personprint::print(Person p) {
+void Personprint::print(const Person &p) {
 
 }

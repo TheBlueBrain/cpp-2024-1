@@ -7,7 +7,7 @@
 
 #include "Person.h"
 
-void PersonPrintId::print(Person p) {
+void PersonPrintId::print(const Person &p) {
 
     std::cout << p.ID << "\n";
 

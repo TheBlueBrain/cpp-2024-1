@@ -33,7 +33,6 @@ void Person::print() const{
 Person::~Person() {
     delete  parentp;
     delete pimpl;
-    amount--;
 }
 
 void Person::changeName(std::string NewName, Trackable* obj) {

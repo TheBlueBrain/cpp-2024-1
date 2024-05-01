@@ -5,7 +5,7 @@
 #include <iostream>
 #include "PersonPrintFullName.h"
 #include "Person.h"
-void PersonPrintFullName::print(Person p) {
+void PersonPrintFullName::print(const Person &p) {
 
     std::cout<<p.getName()<<"\n";
 

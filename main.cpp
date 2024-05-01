@@ -12,8 +12,8 @@ int main() {
     test1->print();
     printAmount();
     Trackable* test2 = new Person("vardas", "pavarde");
-    printAmount();
     test2->print();
+    printAmount();
     //Trackable *Entries[7];
     Trackable ** Ent;
     Ent = new Trackable*[7];
@@ -59,8 +59,6 @@ int main() {
     //delete Entries[6];
     delete Ent[6];
     printAmount();
-
-
     Person *p = new Person("A", "B");
     p->print();
     p->prt=new PersonPrintId();

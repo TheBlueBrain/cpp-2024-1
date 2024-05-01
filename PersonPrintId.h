@@ -10,7 +10,7 @@
 
 class PersonPrintId : public Personprint{
 public:
-    void print(Person p) override;
+    void print(const Person &p) override;
 
 };
 
