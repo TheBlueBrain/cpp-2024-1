@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include "Trackable.h"
 #include "Person.h"
 #include "PersonPrintId.h"
@@ -9,6 +10,7 @@ void printAmount(){
 
 int main() {
     Trackable* test1 = new Trackable("Netipizuotas irasas");
+    std::ofstream out("TEST.abc");
     test1->print();
     printAmount();
     Trackable* test2 = new Person("vardas", "pavarde");
@@ -48,7 +50,9 @@ int main() {
     }catch(std::bad_cast) {
         std::cout<<"Klaida keiciant 0\n";
     }
-
+    Person *cast = dynamic_cast<Person*>(Ent[6]);
+    out<<*cast;
+    out.close();
    /* for(auto Entry : Entries){
         Entry->print();
     }*/
@@ -63,5 +67,12 @@ int main() {
     p->print();
     p->prt=new PersonPrintId();
     p->print();
+
+    std::ifstream in("TEST.abc");
+    Person per;
+
+    in>>per;
+
+    per.print();
     return 0;
 }

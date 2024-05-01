@@ -10,7 +10,7 @@ class TrackableProtected {
 public:
     static unsigned long NID;
     std::string Name;
-    const time_t Time;
+    time_t Time;
     TrackableProtected(const TrackableProtected *tra);
     TrackableProtected(std::string name);
     TrackableProtected();

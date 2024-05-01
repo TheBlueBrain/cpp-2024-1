@@ -4,8 +4,10 @@
 
 #include <iostream>
 #include <ctime>
+#include <sstream>
 #include "Person.h"
 #include "PersonPrintFullName.h"
+#include "PersonPrintId.h"
 
 struct Person::Impl{
     std::string firstName, lastName;
@@ -39,6 +41,7 @@ void Person::changeName(std::string NewName, Trackable* obj) {
     Person *cast = dynamic_cast<Person*>(obj);
     if(cast){
         cast ->pimpl->firstName = NewName;
+        cast ->parentp->Name = NewName + cast->pimpl->lastName;
     }else{
         throw std::bad_cast();
     }
@@ -50,6 +53,7 @@ std::string Person::getName() const{
 Person::Person(const Person& other) :pimpl(new Impl(other)) {
     parentp = getProtected();
     parentp->Name = other.parentp->Name;
+    prt = new PersonPrintFullName();
 }
 
 Person &Person::operator=(const Person &other) {
@@ -69,4 +73,44 @@ Person &Person::operator=(Person &&other){
     other.parentp->Name = "";
     other.ID = 0;
     return *this;
+}
+
+std::ostream &operator<<(std::ostream &o, const Person &p) {
+    o<<p.pimpl->firstName;
+    o<<" "<<p.pimpl->lastName<<" ";
+    std::ostringstream ss;
+    ss<<p.parentp->Time;
+    o<<ss.str()<<" ";
+    o<<p.ID<<" ";
+    o<<p.type<<" ";
+    Personprint* pri = dynamic_cast<PersonPrintFullName*>(p.prt);
+    if(pri){
+        o<<"N\n";
+    }else{
+        o<<"I\n";
+    }
+    return o;
+}
+
+std::istream &operator>>(std::istream &i, Person &p) {
+    i>>p.pimpl->firstName;
+    i>>p.pimpl->lastName;
+    std::string raw, type;
+    i>>raw;
+    std::istringstream is(raw);
+    is>>p.parentp->Time;
+    i>>p.ID;
+    i>>p.type;
+    i>>type;
+    if(type == "N"){
+        p.prt = new PersonPrintFullName;
+    }else{
+        p.prt = new PersonPrintId;
+    }
+    return i;
+}
+
+Person::Person() : pimpl(new Impl("", "")) {
+    parentp = getProtected();
+    prt = new PersonPrintFullName();
 }

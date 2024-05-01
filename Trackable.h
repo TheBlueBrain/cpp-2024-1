@@ -25,7 +25,6 @@ public:
     Trackable& operator=(const Trackable& other);
     Trackable& operator=(Trackable&& other) noexcept;
     ~Trackable();
-
 };
 
 
