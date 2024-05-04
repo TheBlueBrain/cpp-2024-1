@@ -3,11 +3,15 @@
 #include "Trackable.h"
 #include "Person.h"
 #include "PersonPrintId.h"
-
+/**
+ * Funkcija atspaauzdinti registre esanciu elementu kieki.
+ */
 void printAmount(){
     std::cout<<Trackable::amount<<std::endl;
 }
-
+/**
+ * Pagrindinė funkcija skirta pademonstruoti reigistro pagrindinį veikimą.
+ */
 int main() {
     Trackable* test1 = new Trackable("Netipizuotas irasas");
     std::ofstream out("TEST.abc");

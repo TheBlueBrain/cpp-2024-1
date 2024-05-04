@@ -11,32 +11,57 @@
 
 struct Person::Impl{
     std::string firstName, lastName;
+    /**
+     * Paprastas konstruktorius
+     * @param Fname vardas
+     * @param Lname Pavarde
+     */
     Impl(std::string Fname, std::string Lname){
         firstName=Fname;
         lastName=Lname;
     }
+    /**
+     * Tuščias konstruktorius
+     */
     Impl(){};
+    /**
+     * Konstruktoriaus kopijavimas
+     * @param oth Person is kurio kopijuojama
+     */
     Impl(const Person& oth){
         firstName = oth.pimpl->firstName;
         lastName = oth.pimpl->lastName;
     }
 };
+/**
+ * Konstruktorius
+ * @param name Žmogaus vardas
+ * @param lastName Žmogaus pavardė.
+ */
 Person::Person(std::string name, std::string lastName) : pimpl(new Impl(name, lastName)) {
     parentp = getProtected();
     parentp ->Name = name + " " + lastName;
     prt = new PersonPrintFullName();
 }
-
+/**
+ * de facto "to String"
+ */
 void Person::print() const{
     prt->print(*this);
     //std::cout<<"ENTRY ID: "<< ID <<" Given name: "<<pimpl->firstName<<" Last name: "<<pimpl->lastName<<" Date of entry: "<< std::ctime(&parentp->Time);
 }
-
+/**
+ * destruktorius.
+ */
 Person::~Person() {
     delete  parentp;
     delete pimpl;
 }
-
+/**
+ * Pakeičia vardą į naują.
+ * @param NewName naujas vardas.
+ * @param obj Sekamas objektas, kurio vardas bus pakeistas.
+ */
 void Person::changeName(std::string NewName, Trackable* obj) {
     Person *cast = dynamic_cast<Person*>(obj);
     if(cast){
@@ -46,20 +71,35 @@ void Person::changeName(std::string NewName, Trackable* obj) {
         throw std::bad_cast();
     }
 }
-
+/**
+ * Gauti vardą.
+ * @return Vardas
+ */
 std::string Person::getName() const{
     return this->pimpl->firstName + " "+ this->pimpl->lastName;
 }
+/**
+ * Copy konstruktorius
+ * @param other iš ko kopijuojamaa.
+ */
 Person::Person(const Person& other) :pimpl(new Impl(other)) {
     parentp = getProtected();
     parentp->Name = other.parentp->Name;
-    prt = new PersonPrintFullName();
+    prt = other.prt;
 }
-
+/**
+ * Copy assignment
+ * @param other Žmogus, iš kurio imami duomenys.
+ * @return
+ */
 Person &Person::operator=(const Person &other) {
     return *this = Person(other);
 }
-
+/**
+ * Move assignment
+ * @param other
+ * @return Žmogus, iš kurio imami duomenys.
+ */
 Person &Person::operator=(Person &&other){
     if(this == &other){
         return *this;
@@ -74,7 +114,12 @@ Person &Person::operator=(Person &&other){
     other.ID = 0;
     return *this;
 }
-
+/**
+ * Išvedimo srauto perrašymas.
+ * @param o output stautas
+ * @param p Žmogus p, kuris paduodamas  srautą.
+ * @return srautas o
+ */
 std::ostream &operator<<(std::ostream &o, const Person &p) {
     o<<p.pimpl->firstName;
     o<<" "<<p.pimpl->lastName<<" ";
@@ -91,7 +136,12 @@ std::ostream &operator<<(std::ostream &o, const Person &p) {
     }
     return o;
 }
-
+/**
+ * Ivesties binarinio srauto perrašymas, kada būtų galima objektą perduoti į jį.
+ * @param i input sraautas
+ * @param p Žmogus p, kurio duomenys imami iš srauto.
+ * @return input srautas
+ */
 std::istream &operator>>(std::istream &i, Person &p) {
     i>>p.pimpl->firstName;
     i>>p.pimpl->lastName;
@@ -109,7 +159,9 @@ std::istream &operator>>(std::istream &i, Person &p) {
     }
     return i;
 }
-
+/**
+ * Tuščias konstruktorius.
+ */
 Person::Person() : pimpl(new Impl("", "")) {
     parentp = getProtected();
     prt = new PersonPrintFullName();

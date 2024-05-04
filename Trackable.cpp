@@ -7,7 +7,10 @@
 #include <ctime>
 #include <iostream>
 unsigned long Trackable::amount = 0;
-
+/**
+ * Paprastas konstruktorius
+ * @param Name
+ */
 Trackable::Trackable(std::string Name) : proc(new TrackableProtected(Name)){
     this->ID = TrackableProtected::NID;
     TrackableProtected::NID++;
@@ -15,29 +18,47 @@ Trackable::Trackable(std::string Name) : proc(new TrackableProtected(Name)){
 }
 
 
-
+/**
+ * Destruktorius
+ */
 Trackable::~Trackable() {
     amount--;
 }
-
+/**
+ * Tuscias konstruktorius
+ */
 Trackable::Trackable() : proc(new TrackableProtected()){
     ID = proc->NID;
     TrackableProtected::NID++;
     amount++;
 }
-
+/**
+ * de facto to string
+ * @return
+ */
 std::string Trackable::getName() const {
     return proc->Name;
 }
-
+/**
+ * Copy construktorius
+ * @param other Trackable, is kurio kopijuojama
+ */
 Trackable::Trackable(const Trackable &other) :proc(new TrackableProtected(other.getProtected())){
     ID = other.ID;
 }
-
+/**
+ * Copy assignment
+ * @param other Trackable, is kurio kopijuojama
+ * @return nukopijuotas trackable
+ */
 Trackable &Trackable::operator=(const Trackable &other) {
     return *this = Trackable(other);
 }
-
+/**
+ * Move assignment
+ * @param other Trackable is kurio imti
+ * @return Moveintas Trackable
+ */
 Trackable &Trackable::operator=(Trackable &&other) noexcept {
     if(this == &other){
         return *this;
@@ -48,15 +69,16 @@ Trackable &Trackable::operator=(Trackable &&other) noexcept {
     other.ID = 0;
     return *this;
 }
-
+/**
+ *
+ * @return rodykle i protected klase
+ */
 const TrackableProtected *Trackable::getProtected() const {
     return proc;
 }
-
-TrackableProtected *Trackable::getProtected() {
-    return proc;
-}
-
+/**
+ * vardo rasymas
+ */
 void Trackable::print() const {
     std::cout << proc->Name << "\n";
 }
