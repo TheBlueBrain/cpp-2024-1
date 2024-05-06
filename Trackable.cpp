@@ -6,6 +6,8 @@
 #include <string>
 #include <ctime>
 #include <iostream>
+#include "TrackableProtected.h"
+
 unsigned long Trackable::amount = 0;
 /**
  * Paprastas konstruktorius
@@ -81,5 +83,9 @@ const TrackableProtected *Trackable::getProtected() const {
  */
 void Trackable::print() const {
     std::cout << proc->Name << "\n";
+}
+
+TrackableProtected *Trackable::getProtected() {
+    return proc;
 }
 

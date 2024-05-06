@@ -8,6 +8,4 @@
  * De facto interfaceo funkcijos default deklaracija
  * @param p Zmogus is kurio iskviesta funkcija
  */
-void Personprint::print(const Person &p) {
 
-}

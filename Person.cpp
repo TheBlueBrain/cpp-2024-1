@@ -8,6 +8,9 @@
 #include "Person.h"
 #include "PersonPrintFullName.h"
 #include "PersonPrintId.h"
+#include "Trackable.h"
+#include "PersonPrintFullName.h"
+#include "TrackableProtected.h"
 
 struct Person::Impl{
     std::string firstName, lastName;
@@ -164,5 +167,5 @@ std::istream &operator>>(std::istream &i, Person &p) {
  */
 Person::Person() : pimpl(new Impl("", "")) {
     parentp = getProtected();
-    prt = new PersonPrintFullName();
+    prt = new PersonPrintFullName;
 }
