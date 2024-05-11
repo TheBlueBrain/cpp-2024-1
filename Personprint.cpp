@@ -9,3 +9,6 @@
  * @param p Zmogus is kurio iskviesta funkcija
  */
 
+Personprint::~Personprint() {
+
+}

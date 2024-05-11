@@ -12,6 +12,7 @@ class Personprint {//Interface
 
 public:
     virtual void print(const Person &p) = 0;
+    ~Personprint();
 };
 
 

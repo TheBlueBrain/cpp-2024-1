@@ -11,7 +11,9 @@
  * @param p Zmogus is kurio iskviesta funkcija
  */
 void PersonPrintId::print(const Person &p) {
-
     std::cout << p.ID << "\n";
+}
+
+PersonPrintId::~PersonPrintId() {
 
 }

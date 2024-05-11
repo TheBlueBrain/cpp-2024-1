@@ -14,6 +14,7 @@ public:
     TrackableProtected(const TrackableProtected *tra);
     TrackableProtected(std::string name);
     TrackableProtected();
+    ~TrackableProtected();
 };
 
 

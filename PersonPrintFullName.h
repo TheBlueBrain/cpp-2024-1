@@ -12,7 +12,7 @@
 class PersonPrintFullName : public Personprint{
 public:
     void print(const Person &p) override;
-
+    ~PersonPrintFullName();
 };
 
 

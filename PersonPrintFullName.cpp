@@ -14,3 +14,7 @@ void PersonPrintFullName::print(const Person &p) {
     std::cout<<p.getName()<<"\n";
 
 }
+
+PersonPrintFullName::~PersonPrintFullName() {
+
+}

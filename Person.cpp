@@ -9,7 +9,6 @@
 #include "PersonPrintFullName.h"
 #include "PersonPrintId.h"
 #include "Trackable.h"
-#include "PersonPrintFullName.h"
 #include "TrackableProtected.h"
 
 struct Person::Impl{

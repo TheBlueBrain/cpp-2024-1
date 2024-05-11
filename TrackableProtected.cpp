@@ -5,6 +5,7 @@
 #include <ctime>
 #include <string>
 #include "TrackableProtected.h"
+
 /**
  * Copy konstruktorius
  * @param tra TrackableProtected, kuris kopijuojamas
@@ -25,5 +26,9 @@ Name = name;
  * tuscias kostruktorius
  */
 TrackableProtected::TrackableProtected() : Time(time(0)){
+
+}
+
+TrackableProtected::~TrackableProtected() {
 
 }

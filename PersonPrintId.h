@@ -11,7 +11,7 @@
 class PersonPrintId : public Personprint{
 public:
     void print(const Person &p) override;
-
+    ~PersonPrintId();
 };
 
 
